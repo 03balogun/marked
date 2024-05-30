@@ -3,7 +3,7 @@
  */
 export class Slugger {
   constructor() {
-    this.seen = {};
+    this.seen = new Map();
   }
 
   /**
@@ -28,16 +28,16 @@ export class Slugger {
   getNextSafeSlug(originalSlug, isDryRun) {
     let slug = originalSlug;
     let occurenceAccumulator = 0;
-    if (this.seen.hasOwnProperty(slug)) {
-      occurenceAccumulator = this.seen[originalSlug];
+    if (this.seen.has(slug)) {
+      occurenceAccumulator = this.seen.get(originalSlug);
       do {
         occurenceAccumulator++;
         slug = originalSlug + '-' + occurenceAccumulator;
-      } while (this.seen.hasOwnProperty(slug));
+      } while (this.seen.has(slug));
     }
     if (!isDryRun) {
-      this.seen[originalSlug] = occurenceAccumulator;
-      this.seen[slug] = 0;
+      this.seen.set(originalSlug, occurenceAccumulator);
+      this.seen.set(slug, 0);
     }
     return slug;
   }
