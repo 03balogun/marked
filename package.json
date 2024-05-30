@@ -1,5 +1,5 @@
 {
-  "name": "marked",
+  "name": "@03balogun/marked",
   "description": "A markdown parser built for speed",
   "author": "Christopher Jeffrey",
   "version": "5.0.5",
@@ -9,6 +9,10 @@
   "browser": "./lib/marked.umd.js",
   "bin": {
     "marked": "bin/marked.js"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "man": "./man/marked.1",
   "files": [
